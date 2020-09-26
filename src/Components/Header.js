@@ -9,7 +9,7 @@ const Header = () => {
       <Link to="/">
         <div>Home Page</div>
       </Link>
-      <Link to="/new">
+      <Link create={true} to="/new">
         <div>Create Employee</div>
       </Link>
 

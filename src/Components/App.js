@@ -43,6 +43,7 @@ function App() {
         <Router>
           <Home path="/" />
           <CreateEmployee path="/new" />
+          <CreateEmployee path=":id" />
         </Router>
       </>
       <GlobalStyle />
