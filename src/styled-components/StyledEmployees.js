@@ -14,6 +14,16 @@ export const StyledEmployees = styled.div`
   //border-top: 1px solid #999;
   border-radius: 5px;
   max-width: 90%;
+  .collection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      margin: 0 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
   .listHeader {
     display: flex;
     justify-content: space-evenly;

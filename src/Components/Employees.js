@@ -1,12 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import EmployeesContext from "../data/context";
 import { StyledEmployees } from "../styled-components/StyledEmployees";
 import Employee from "./Employee";
 import { FILTER_LIST_BY } from "../data/employeesReducer";
 const Employees = () => {
+  const [index, setIndex] = useState(0);
   // context state
   const { state, dispatch } = useContext(EmployeesContext);
+
   const { employeesList } = state;
+  let renderedEmployeesList = employeesList.slice(index, index + 5);
 
   return (
     <StyledEmployees>
@@ -49,9 +52,27 @@ const Employees = () => {
             </div>
           </div>
           <div>
-            {employeesList.map((employee) => (
+            {renderedEmployeesList.map((employee) => (
               <Employee key={employee.id} employee={employee} />
             ))}
+          </div>
+          <div className="collection">
+            <button disabled={index < 1} onClick={() => setIndex(index - 5)}>
+              -
+            </button>
+            <p>
+              {index + 1} to{" "}
+              {index + 5 > employeesList.length
+                ? employeesList.length
+                : index + 5}{" "}
+              of total :{employeesList.length}
+            </p>
+            <button
+              disabled={index + 6 > employeesList.length}
+              onClick={() => setIndex(index + 5)}
+            >
+              +
+            </button>
           </div>
         </div>
       </>
