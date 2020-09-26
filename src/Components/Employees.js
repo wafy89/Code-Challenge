@@ -18,6 +18,14 @@ const Employees = () => {
         <div className="listBody">
           <div className="listTitles">
             <div
+              name="employee_manager"
+              onClick={(e) =>
+                dispatch({ type: FILTER_LIST_BY, byField: "employee_manager" })
+              }
+            >
+              Manager
+            </div>
+            <div
               name="employee_age"
               onClick={(e) =>
                 dispatch({ type: FILTER_LIST_BY, byField: "employee_age" })

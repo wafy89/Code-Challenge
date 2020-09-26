@@ -27,7 +27,7 @@ export const StyledEmployees = styled.div`
     align-items: stretch;
     .listTitles {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       margin-top: 2rem;
       border-bottom: 1px solid #333;

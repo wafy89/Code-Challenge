@@ -4,9 +4,8 @@ import { fetchEmployees, fetchEmp } from "./functions";
 // ACTION TYPES
 const UPDATE_EMPLOYEES = "get-all-employees";
 const FILTER_LIST_BY = "get-one-employee";
-const CREATE_EMPLOYEE = "create-employee";
+const TOGGLE_MANAGER_CHECK = "toggle-manager-check";
 const EMPLOYEE_FIELDS_UPDATE = "employee-fields-update";
-const UPDATE_EMPLOYEE = "update-employee";
 
 //EMPLOYEES REDUCER
 const employeesReducer = (state, action) => {
@@ -27,35 +26,29 @@ const employeesReducer = (state, action) => {
     case FILTER_LIST_BY: {
       const { byField } = action;
       let newEmployeesList = state.employeesList;
-      newEmployeesList.sort((a, b) => (a[byField] > b[byField] ? 1 : -1));
+      if (byField === "employee_manager") {
+        newEmployeesList.sort((a, b) => (a[byField] < b[byField] ? 1 : -1));
+      } else {
+        newEmployeesList.sort((a, b) => (a[byField] > b[byField] ? 1 : -1));
+      }
       return {
         ...state,
         employeesList: newEmployeesList,
       };
     }
-    case "success": {
+    case TOGGLE_MANAGER_CHECK: {
+      const { id } = action;
+      let newEmployeesList = state.employeesList.map((item) =>
+        item.id === id
+          ? { ...item, employee_manager: !item.employee_manager }
+          : item
+      );
       return {
         ...state,
-        isLoggedIn: true,
-        isLoading: false,
+        employeesList: newEmployeesList,
       };
     }
-    case "error": {
-      return {
-        ...state,
-        error: "Incorrect username or password!",
-        isLoggedIn: false,
-        isLoading: false,
-        username: "",
-        password: "",
-      };
-    }
-    case "logOut": {
-      return {
-        ...state,
-        isLoggedIn: false,
-      };
-    }
+
     default:
       return state;
   }
@@ -66,4 +59,5 @@ export {
   UPDATE_EMPLOYEES,
   EMPLOYEE_FIELDS_UPDATE,
   FILTER_LIST_BY,
+  TOGGLE_MANAGER_CHECK,
 };
