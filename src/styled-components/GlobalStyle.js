@@ -3,14 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 :root {
   overflow-x: hidden;
-  font-size: 62.5%;
+
   box-sizing: border-box;
   margin:none;
   width:100vw;
 
-  @media (min-width: 1024px) {
-    font-size: 100%;
-  }
 }
   body {
     position:relative;

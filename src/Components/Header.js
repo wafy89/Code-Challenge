@@ -9,6 +9,9 @@ const Header = () => {
       <Link to="/">
         <div>Home Page</div>
       </Link>
+      <Link to="/new">
+        <div>Create Employee</div>
+      </Link>
 
       <div>@ Wafi Amer</div>
     </StyledHeader>

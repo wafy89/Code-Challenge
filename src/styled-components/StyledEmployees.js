@@ -18,6 +18,7 @@ export const StyledEmployees = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    font-weight: bolder;
   }
   .listBody {
     display: flex;
@@ -30,6 +31,7 @@ export const StyledEmployees = styled.div`
       align-items: center;
       margin-top: 2rem;
       border-bottom: 1px solid #333;
+      font-weight: bolder;
     }
   }
 `;
