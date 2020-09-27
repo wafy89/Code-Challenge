@@ -22,7 +22,7 @@ to install node_modules
 -filter by name on typing in filter field
 -create new employee 
 -update specific employee
-
+-render maximum 5 rows in th list with buttons to go next and previous
 
 ### `TECHNOLOGIES USED`
 
