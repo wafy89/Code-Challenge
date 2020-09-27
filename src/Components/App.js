@@ -35,7 +35,7 @@ function App() {
   const contextValue = useMemo(() => {
     return { state, dispatch };
   }, [state, dispatch]);
-
+  console.log("render");
   return (
     <EmployeesContext.Provider value={contextValue}>
       <>

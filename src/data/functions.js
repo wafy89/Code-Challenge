@@ -38,6 +38,15 @@ const updateEmployeeData = async (e, contextFields, propsFields) => {
   }
 };
 
+const filteredEmployeesList = (arr, text, index) => {
+  const t = text.toLowerCase();
+  const filteredArr = t
+    ? arr.filter((item) => item.employee_name.toLowerCase().includes(t))
+    : arr;
+
+  return filteredArr.slice(index, index + 5);
+};
+
 const submitNewEmployee = async (e, data) => {
   e.preventDefault();
   /*   for (let [key, value] of Object.entries(data)) {
@@ -57,4 +66,9 @@ const submitNewEmployee = async (e, data) => {
   }
 };
 
-export { fetchEmployees, submitNewEmployee, updateEmployeeData };
+export {
+  fetchEmployees,
+  submitNewEmployee,
+  updateEmployeeData,
+  filteredEmployeesList,
+};

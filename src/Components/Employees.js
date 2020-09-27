@@ -1,22 +1,43 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
+
+//CONTEXT
 import EmployeesContext from "../data/context";
+
+//COMPONENTS
 import { StyledEmployees } from "../styled-components/StyledEmployees";
 import Employee from "./Employee";
+
+//FUNCTIONS
+import { filteredEmployeesList } from "../data/functions";
+// ACTION TYPE
 import { FILTER_LIST_BY } from "../data/employeesReducer";
+
 const Employees = () => {
-  const [index, setIndex] = useState(0);
+  const [filter, setFilter] = useState({ index: 0 });
+  const [text, setText] = useState("");
+
   // context state
   const { state, dispatch } = useContext(EmployeesContext);
-
   const { employeesList } = state;
-  let renderedEmployeesList = employeesList.slice(index, index + 5);
+
+  //ARRAY TO RENDER
+  let renderedEmployeesList = filteredEmployeesList(
+    employeesList,
+    text,
+    filter.index
+  );
 
   return (
     <StyledEmployees>
       <>
         <div className="listHeader">
           <h2>Employees</h2>
-          <input type="text" placeholder="filter" />
+          <input
+            type="text"
+            placeholder="filter"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
         </div>
         <div className="listBody">
           <div className="listTitles">
@@ -57,19 +78,26 @@ const Employees = () => {
             ))}
           </div>
           <div className="collection">
-            <button disabled={index < 1} onClick={() => setIndex(index - 5)}>
+            <button
+              disabled={filter.index < 1}
+              onClick={() =>
+                setFilter((prev) => ({ ...prev, index: prev.index - 5 }))
+              }
+            >
               -
             </button>
             <p>
-              {index + 1} to{" "}
-              {index + 5 > employeesList.length
+              {filter.index + 1} to{" "}
+              {filter.index + 5 > employeesList.length
                 ? employeesList.length
-                : index + 5}{" "}
+                : filter.index + 5}{" "}
               of total :{employeesList.length}
             </p>
             <button
-              disabled={index + 6 > employeesList.length}
-              onClick={() => setIndex(index + 5)}
+              disabled={filter.index + 6 > employeesList.length}
+              onClick={() =>
+                setFilter((prev) => ({ ...prev, index: prev.index + 5 }))
+              }
             >
               +
             </button>

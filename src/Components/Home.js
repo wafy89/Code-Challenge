@@ -1,16 +1,15 @@
 import React, { useEffect, useContext } from "react";
-
-import Employees from "./Employees";
-
+// COMPONENTS
 import { StyledHome } from "../styled-components/StyledHome";
-
+import Employees from "./Employees";
 //FUNCTIONS
 import { fetchEmployees } from "../data/functions";
 import { UPDATE_EMPLOYEES } from "../data/employeesReducer";
-
+//CONTEXT
 import EmployeesContext from "../data/context";
 
 const Home = () => {
+  console.log("render");
   const { dispatch } = useContext(EmployeesContext);
   useEffect(() => {
     fetchEmployees().then((employees) =>

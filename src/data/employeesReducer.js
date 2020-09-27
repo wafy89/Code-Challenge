@@ -1,6 +1,3 @@
-// FUNCTIONS IMPORTS
-import { fetchEmployees, fetchEmp } from "./functions";
-
 // ACTION TYPES
 const UPDATE_EMPLOYEES = "get-all-employees";
 const FILTER_LIST_BY = "get-one-employee";

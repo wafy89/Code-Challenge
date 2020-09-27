@@ -1,9 +1,11 @@
-import React, { useContext, useState, useMemo } from "react";
-import { Link } from "@reach/router";
+import React, { useContext, useState } from "react";
+//CONTEXT
 import EmployeesContext from "../data/context";
+//COMPONENTS
 import { StyledCreateEmployee } from "../styled-components/StyledCreateEmployee";
+//ACTION TYPE
 import { EMPLOYEE_FIELDS_UPDATE } from "../data/employeesReducer";
-
+//FUNCTIONS
 import { submitNewEmployee, updateEmployeeData } from "../data/functions";
 
 const CreateEmployee = (props) => {
@@ -13,18 +15,20 @@ const CreateEmployee = (props) => {
 
   const { state, dispatch } = useContext(EmployeesContext);
   const [edit, setEdit] = useState(false);
-  const contextFields = state.fields;
-  const propsFields = props.location.state;
-  // if redirected with ID it should be updateEmployee else create a newOne            create || edit ?
+  const contextFields = state.fields; //the value of the fields in main state that change on input-change
+  const propsFields = props.location.state; //the value of the fields that come from link witch are the employee data to prevent a new fetch from server
+
+  // if redirected with ID (SUBMIT FUNCTION) should be updateEmployee else create a newOne            create || edit ?
   const submit = create
     ? (e, v) => submitNewEmployee(e, contextFields)
     : (e, v) => updateEmployeeData(e, contextFields, propsFields);
-
+  console.log("render");
   return (
     <StyledCreateEmployee>
       <form onSubmit={submit}>
         {edit ? <span> old age value:{propsFields.employee_age}</span> : ""}
         <input
+          required
           min="18"
           max="70"
           type="number"
@@ -46,6 +50,7 @@ const CreateEmployee = (props) => {
         />
         {edit ? <span>old name value:{propsFields.employee_name}</span> : ""}
         <input
+          required
           type="text"
           name="employee_name"
           placeholder="Full Name"
@@ -69,6 +74,7 @@ const CreateEmployee = (props) => {
           ""
         )}
         <input
+          required
           min="1000"
           type="number"
           name="employee_salary"
@@ -87,21 +93,22 @@ const CreateEmployee = (props) => {
             })
           }
         />
-
-        {create ? (
-          <button type="submit">Create</button>
-        ) : edit ? (
-          <>
-            <button type="submit">Update</button>
-            <button type="button" onClick={() => setEdit(false)}>
-              cancel
+        <div>
+          {create ? (
+            <button type="submit">Create</button>
+          ) : edit ? (
+            <>
+              <button type="submit">Update</button>
+              <button type="button" onClick={() => setEdit(false)}>
+                cancel
+              </button>
+            </>
+          ) : (
+            <button onClick={() => setEdit(true)} type="button">
+              edit
             </button>
-          </>
-        ) : (
-          <button onClick={() => setEdit(true)} type="button">
-            edit
-          </button>
-        )}
+          )}
+        </div>
       </form>
     </StyledCreateEmployee>
   );

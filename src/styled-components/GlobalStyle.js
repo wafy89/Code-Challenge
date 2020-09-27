@@ -3,11 +3,10 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 :root {
   overflow-x: hidden;
-
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   margin:none;
   width:100vw;
-
 }
   body {
     position:relative;
@@ -18,11 +17,13 @@ export const GlobalStyle = createGlobalStyle`
     background-color: #fff;
     width:100vw;
     *{
-      font-family: 'Assistant', sans-serif;
+      transition:all ease .1s ;
       padding: 0;
       margin: 0 ;
       box-sizing: border-box;
-
+      a, a:active,a:visited ,a:link{
+        text-decoration: none;
+      }
     }
   }
 `;
