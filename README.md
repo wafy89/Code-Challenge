@@ -1,8 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### `npm install` 
+to install node_modules
 
-In the project directory, you can run:
 
 ### `npm start`
 
@@ -12,9 +11,6 @@ Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm install` 
-to install node_modules
 
 
 ### `TASK DONE` 
